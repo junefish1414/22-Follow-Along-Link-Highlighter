@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Follow Along Nav</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+      <ul class="menu">
+        <li><a href="">Home</a></li>
+        <li><a href="">Order Status</a></li>
+        <li><a href="">Tweets</a></li>
+        <li><a href="">Read Our History</a></li>
+        <li><a href="">Contact Us</a></li>
+      </ul>
+    </nav>
+
+    <div class="wrapper">
+      <p>Lorem ipsum dolor sit amet, <a href="">consectetur</a> adipisicing elit. Est <a href="">explicabo</a> unde natus necessitatibus esse obcaecati distinctio, aut itaque, qui vitae!</p>
+      <p>Aspernatur sapiente quae sint <a href="">soluta</a> modi, atque praesentium laborum pariatur earum <a href="">quaerat</a> cupiditate consequuntur facilis ullam dignissimos, aperiam quam veniam.</p>
+      <p>Cum ipsam quod, incidunt sit ex <a href="">tempore</a> placeat maxime <a href="">corrupti</a> possimus <a href="">veritatis</a> ipsum fugit recusandae est doloremque? Hic, <a href="">quibusdam</a>, nulla.</p>
+      <p>Esse quibusdam, ad, ducimus cupiditate <a href="">nulla</a>, quae magni odit <a href="">totam</a> ut consequatur eveniet sunt quam provident sapiente dicta neque quod.</p>
+      <p>Aliquam <a href="">dicta</a> sequi culpa fugiat <a href="">consequuntur</a> pariatur optio ad minima, maxime <a href="">odio</a>, distinctio magni impedit tempore enim repellendus <a href="">repudiandae</a> quas!</p>
+    </div>
+
+  <script>
+      // 抓取所有的 a 元素
+      const triggers = document.querySelectorAll('a');
+      // 建立一個span來放置 highlight 的效果
+      const highlight = document.createElement('span');
+      // 將css設定的 highlightSpot 效果賦於到 span 上
+      highlight.classList.add('highlightSpot');
+      // 將建立好的 span 加到頁面中
+      document.body.append(highlight);
+    
+      // 效果
+      function highlightLink() {
+        //   console.log('有順利移到項目上');
+        // 取得 this (由 addEventListener 傳入的那個 a 的資訊)
+        const linkCoords = this.getBoundingClientRect();
+        // 建立一個 coords 物件來放使用的寬高與定位
+        const coords = {
+            width: linkCoords.width,
+            height: linkCoords.height,
+            left: linkCoords.left + window.scrollX,
+            top: linkCoords.top + window.scrollY
+        };
+        // 設定 highlight 效果的寬高跟定位
+        highlight.style.width = `${coords.width}px `;
+        highlight.style.height = `${coords.height}px`;
+        highlight.style.transform = `translate(${coords.left}px, ${coords.top}px)`
+      };
+
+      // 監聽所有a元素，讓滑鼠移入的時候觸發hightlightLink的效果
+      triggers.forEach(a => a.addEventListener('mouseenter',highlightLink));
+      // mouseenter - 是滑鼠移入時
+    
+  </script>
+</body>
+</html>
+
